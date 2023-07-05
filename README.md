@@ -1,6 +1,6 @@
 # Sales-Assistant-Chatbot 💬
 
-AI-powered sales assistant chatbot that helps sales representatives n answering customer objections. It's developed using [OpenAI's](https://openai.com/) `gpt-3.5-turbo` model, [LangChain](https://github.com/hwchase17/langchain) & [Deep Lake](https://github.com/activeloopai/deeplake) as a Vector Store.
+AI-powered sales assistant chatbot that helps sales representatives in answering customer objections. It's developed using [OpenAI](https://openai.com/)'s `gpt-3.5-turbo` model, [LangChain](https://github.com/hwchase17/langchain) & [Deep Lake](https://github.com/activeloopai/deeplake) as a Vector Store.
 
 
 Dataset
