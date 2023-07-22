@@ -9,7 +9,6 @@ from langchain.prompts.chat import (
 
 from src.DeepLake import DeepLakeLoader
 from src import prompts
-import chainlit as cl
 
 
 class SalesChatChain:
@@ -17,7 +16,7 @@ class SalesChatChain:
     A class for interacting with an AI chat model and helping sales agent in answering customer objection queries.
     """
 
-    def __init__(self, model, temperature, use_chainlit=True, open_api_key:str = None, create_new_db=False):
+    def __init__(self, model, temperature):
         """
         Initializes a SalesChatChain instance.
 
@@ -27,24 +26,13 @@ class SalesChatChain:
         self.model_name=model
         self.temperature = temperature
         
-        if use_chainlit:
-            # OpenAI Chat model, getting user key for Chainlit
-            self.llm_chat = ChatOpenAI(model=self.model_name, temperature=self.temperature, openai_api_key=open_api_key)
-        else: 
-            # OpenAI Chat model
-            self.llm_chat = ChatOpenAI(model=self.model_name, temperature=self.temperature)
+        # OpenAI Chat model
+        self.llm_chat = ChatOpenAI(model=self.model_name, temperature=self.temperature)
 
-        if create_new_db:
-            # New Deep Lake instance
-            self.deeplake = DeepLakeLoader(org_id="moraouf", 
-                                        dataset_name="sales_assistant", 
-                                        source_data_path='data/sales_data.txt', 
-                                        create_new_db = True)
-        else:
-            # New Deep Lake instance
-            self.deeplake = DeepLakeLoader(org_id="moraouf", 
-                                        dataset_name="sales_assistant", 
-                                        source_data_path='data/sales_data.txt')
+        # New Deep Lake instance
+        self.deeplake = DeepLakeLoader(org_id="moraouf", 
+                                    dataset_name="sales_assistant", 
+                                    source_data_path='data/sales_data.txt')
 
 
     def query(self, query:str = None):
@@ -55,7 +43,7 @@ class SalesChatChain:
             query (str): The query to generate a response for.
 
         Returns:
-            str: The response generated from chain
+            response: The response generated from chain
         """
 
         #Chat Prompt Tempalate
@@ -75,8 +63,8 @@ class SalesChatChain:
             chain_type_kwargs=chain_type_kwargs
         )
 
-        # return qa.run(query)
-        return qa
+        return qa.run(query)
+        # return qa
 
 
 

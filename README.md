@@ -1,6 +1,11 @@
 # Sales-Assistant-Chatbot 💬
 
-AI-powered sales assistant chatbot that helps sales representatives in answering customer objections. It's developed using [OpenAI](https://openai.com/)'s `gpt-3.5-turbo` model, [LangChain](https://github.com/hwchase17/langchain) & [Deep Lake](https://github.com/activeloopai/deeplake) as a Vector Store.
+AI-powered sales assistant chatbot that helps sales representatives in answering customer objections. It's developed using **[OpenAI](https://openai.com/)**'s `gpt-3.5-turbo` model, **[LangChain](https://github.com/hwchase17/langchain)** & **[Deep Lake](https://github.com/activeloopai/deeplake)** as a Vector Store. It also uses OpenAI **Whisper** model to transcribe audio input, & **Eleven Labs** to generate audio of Chatbot output.
+
+
+Demo
+---
+<!-- [Streamlit Demo.webm](https://user-images.githubusercontent.com/78295016/225079820-9e264da2-2f5d-4b49-966b-48dd5c228f3b.webm) -->
 
 
 Dataset
@@ -22,19 +27,21 @@ Setup
   * Setting up a `python=3.8` virtual environment
   * run: `pip install -r requirements.txt`
 
-3. Add your OpenAI API key & Activeloop Deep Lake key in .env` file
+3. Add your **OpenAI API key**,  **Activeloop Deep Lake API key** & **Eleven Labs API key** in .env` file
 
 4. Create a new database instance & save your data in it 
     ```
     python src/NewDB.py
     ```
 
-5. Change directory & run Chainlit app:
+5. Change the `org_id` & `dataset_name` in `src/ChatChain.py` to yours.
+
+6. Change directory & run the app:
     ```
     cd Sales-Assistant-Chatbot
-    chainlit run app.py
+    streamlit run app.py
     ```
-6. Open a web browser and go to http://localhost:8000 to access the application.
+7. Open a web browser and go to http://localhost:8000 to access the application.
 
 
 

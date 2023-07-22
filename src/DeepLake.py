@@ -2,10 +2,11 @@ import os
 import re
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import DeepLake
+from typing import Optional
 
 
 class DeepLakeLoader:
-    def __init__(self, org_id, dataset_name, source_data_path, create_new_db = False):
+    def __init__(self, org_id:str, dataset_name:str, source_data_path:Optional["str"]):
         """
         Initialize DeepLakeLoader object.
 
@@ -13,7 +14,6 @@ class DeepLakeLoader:
             org_id (str): Deep Lake Organization ID.
             dataset_name (str): Dataset name to store data.
             source_data_path (str): Path to text file to be processed & stored in Deep Lake.
-            create_new_db (bool): Whether to create a new database or use an existing one.
         """
 
         self.org_id = org_id
@@ -24,15 +24,10 @@ class DeepLakeLoader:
         # data splitting process
         self.data = self.split_data()
 
-        if create_new_db:
-            # create new database
-            self.db = self.create_db()
+      # laod existing database
+        self.db = self.load_db()
             
-        else:
-            # laod existing database
-            self.db = self.load_db()
-            
-        
+    # -------------------------------------------------------------------------------------------------------------    
 
     def load_db(self):
         """
@@ -42,6 +37,8 @@ class DeepLakeLoader:
             DeepLake: DeepLake object.
         """
         return DeepLake(dataset_path=self.dataset_path, embedding_function=OpenAIEmbeddings(), read_only=True)
+    
+    # -------------------------------------------------------------------------------------------------------------
 
     def create_db(self):
         """
@@ -51,6 +48,8 @@ class DeepLakeLoader:
             DeepLake: DeepLake object.
         """
         return DeepLake.from_texts(texts=self.data, embedding=OpenAIEmbeddings(), dataset_path=self.dataset_path)
+    
+    # -------------------------------------------------------------------------------------------------------------
 
     def query_db(self, query):
         """
@@ -68,6 +67,8 @@ class DeepLakeLoader:
             content.append(result.page_content)
         return content
     
+    # -------------------------------------------------------------------------------------------------------------
+    
     def add_data(self, texts):
         """
         Add nw data to database
@@ -76,6 +77,8 @@ class DeepLakeLoader:
             texts (List[str]): List of Texts to be added to database
         """
         self.db.add_texts(texts)
+
+    # -------------------------------------------------------------------------------------------------------------
 
     def split_data(self):
         """
