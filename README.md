@@ -5,7 +5,7 @@ AI-powered sales assistant chatbot that helps sales representatives in answering
 
 Demo
 ---
-[Sales Assistant Demo](https://raw.githubusercontent.com/MoRaouf/Sales-Assistant-Chatbot/main/Sales%20Assistant.mp4)
+[Sales Assistant.mp4](https://raw.githubusercontent.com/MoRaouf/Sales-Assistant-Chatbot/main/Sales%20Assistant.mp4)
 
 
 ---
