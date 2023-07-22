@@ -5,10 +5,9 @@ AI-powered sales assistant chatbot that helps sales representatives in answering
 
 Demo
 ---
-<!-- [Streamlit Demo.webm](https://user-images.githubusercontent.com/78295016/225079820-9e264da2-2f5d-4b49-966b-48dd5c228f3b.webm) -->
+[Sales Assistant Demo](https://raw.githubusercontent.com/MoRaouf/Sales-Assistant-Chatbot/main/Sales%20Assistant.mp4)
 
 
-Dataset
 ---
 The app uses [this](https://blog.hubspot.com/sales/handling-common-sales-objections) as a knowledge base, located in the data folder. To use your own knowledge base:
 
